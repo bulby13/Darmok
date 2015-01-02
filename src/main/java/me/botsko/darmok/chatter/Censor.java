@@ -115,7 +115,7 @@ public class Censor {
 		for(String variation : variations){
 			// scan for illegal words
 			for(String w : rejectWords){
-				if(variation.contains(w)){
+				if(variation.matches("\b"+w+"\b")){
 					return true;
 				}
 			}
@@ -131,7 +131,7 @@ public class Censor {
 	 */
 	public String replaceCensoredWords( String msg ){
 		for(String w : censorWords){
-			msg = msg.replaceAll("(?i)"+w, "*****");
+			msg = msg.replaceAll("(?i)\b"+w+"\b", "*****");
 		}
 		return msg;
 	}
